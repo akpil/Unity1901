@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    public Transform boltPosition;
+    public Bolt boltPrefab;
+    public float fireRate;
+    private float currentFireRate;
+
     private Rigidbody rb;
     public float Speed;
     public float Tilt;
@@ -14,7 +19,8 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
-	}
+        currentFireRate = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,13 +35,13 @@ public class PlayerController : MonoBehaviour {
                                   0,
                                   Mathf.Clamp(rb.position.z, zMin, zMax));
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && currentFireRate <= 0)
         {
             Debug.Log("Fire!!");
+            Bolt newBolt = Instantiate(boltPrefab);
+            newBolt.transform.position = boltPosition.position;
+            currentFireRate = fireRate;
         }
-        if (Input.GetKey(KeyCode.Escape))
-        {
-
-        }
+        currentFireRate -= Time.deltaTime;
 	}
 }

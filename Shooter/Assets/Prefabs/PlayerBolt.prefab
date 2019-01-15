@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4828293454848406}
   - component: {fileID: 54166870731940604}
   - component: {fileID: 114804722959885620}
+  - component: {fileID: 136129089756737030}
   m_Layer: 0
   m_Name: PlayerBolt
   m_TagString: Untagged
@@ -141,3 +142,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
+--- !u!136 &136129089756737030
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712793482851612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.52
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
