@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetButton("Fire1") && currentFireRate <= 0)
         {
-            Debug.Log("Fire!!");
             Bolt newBolt = Instantiate(boltPrefab);
             newBolt.transform.position = boltPosition.position;
             currentFireRate = fireRate;
