@@ -16,6 +16,7 @@ public class BGScroller : MonoBehaviour {
         if (other.gameObject.CompareTag("BGBumper"))
         {
             transform.position += Vector3.forward * (40.94f);
+
         }
     }
 

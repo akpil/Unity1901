@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - BGBumper
+  - PlayerBolt
   layers:
   - Default
   - TransparentFX
