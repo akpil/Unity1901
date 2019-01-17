@@ -14,13 +14,30 @@ public class EnemyController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * Speed;
         StartCoroutine(enemyFire());
+        StartCoroutine(enemyMovement());
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
+    private IEnumerator enemyMovement()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.7f);
+            if (transform.position.x < 0)
+            {
+                rb.velocity += Vector3.right * Random.Range(1.5f, 3);
+            }
+            else
+            {
+                rb.velocity += Vector3.left * Random.Range(1.5f, 3);
+            }
+            yield return new WaitForSeconds(1);
+            rb.velocity -= new Vector3(rb.velocity.x, 0, 0);
+        }
+    }
     private IEnumerator enemyFire()
     {
         while (true)
