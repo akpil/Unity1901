@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BGBumper
   - PlayerBolt
+  - EnemyBolt
   layers:
   - Default
   - TransparentFX

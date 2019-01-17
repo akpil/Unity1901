@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
     public AsteroidMovement[] astroidPrefab;
+    public EnemyController enemyShipPrefab;
 
     private int Score;
 
@@ -30,6 +31,12 @@ public class GameController : MonoBehaviour {
                 int index = Random.Range(0, astroidPrefab.Length);
                 AsteroidMovement newAst = Instantiate(astroidPrefab[index]);
                 newAst.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 0, 16);
+                yield return new WaitForSeconds(0.5f);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                EnemyController newEnemy = Instantiate(enemyShipPrefab);
+                newEnemy.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 0, 16);
                 yield return new WaitForSeconds(0.5f);
             }
             yield return new WaitForSeconds(SpawnRate);

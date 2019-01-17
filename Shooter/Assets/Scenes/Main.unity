@@ -144,6 +144,8 @@ MonoBehaviour:
   - {fileID: 114381814891339830, guid: 48b963188c034974bac19e80baa3ad42, type: 2}
   - {fileID: 114085756506187586, guid: 1ed967d5eefe71742925fdd245496afe, type: 2}
   - {fileID: 114929180835314764, guid: 3cafb582163c7814f9616eb1a5f70761, type: 2}
+  enemyShipPrefab: {fileID: 114651310396081520, guid: fe80372abfb264b4b8035101883c839a,
+    type: 2}
   SpawnRate: 5
 --- !u!4 &104860707
 Transform:
@@ -249,7 +251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d9808401c68af274a8edfbed3d1b53c7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: d9808401c68af274a8edfbed3d1b53c7, type: 3}
       propertyPath: m_Enabled
