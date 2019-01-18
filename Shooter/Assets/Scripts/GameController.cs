@@ -6,20 +6,40 @@ public class GameController : MonoBehaviour {
     public AsteroidMovement[] astroidPrefab;
     public EnemyController enemyShipPrefab;
 
+    public UIController uiController;
+
+    public BGScroller bg1;
+    public BGScroller bg2;
+
     private int Score;
 
     public float SpawnRate;
+
+    private Coroutine enemy;
+
     // Use this for initialization
     void Start () {
-        StartCoroutine(SpawnEnemy());
+        enemy = StartCoroutine(SpawnEnemy());
         Score = 0;
-        Debug.Log(Score);
+
     }
 
     public void AddScore(int value)
     {
         Score += value;
-        Debug.Log(Score);
+        uiController.ShowScore(Score);
+    }
+
+    public void GameOver()
+    {
+        //적 그만나오기
+        StopCoroutine(enemy);
+        //배경 멈추기
+        bg1.StopMove();
+        bg2.StopMove();
+        //game  over 알려주기
+        uiController.ShowGameOver();
+        //다시시작 활성화 하기
     }
 
     private IEnumerator SpawnEnemy()

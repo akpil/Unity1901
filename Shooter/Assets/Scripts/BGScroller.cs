@@ -11,6 +11,16 @@ public class BGScroller : MonoBehaviour {
         rb.velocity = Vector3.back * Speed;
 	}
 
+    public void StartMove()
+    {
+        rb.velocity = Vector3.back * Speed;
+    }
+
+    public void StopMove()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("BGBumper"))

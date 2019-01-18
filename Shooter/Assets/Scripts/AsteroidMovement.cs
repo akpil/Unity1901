@@ -22,7 +22,7 @@ public class AsteroidMovement : MonoBehaviour {
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
-            // 점수를 올린다.
+            
             GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
             GameController controller = controlObj.GetComponent<GameController>();
             controller.AddScore(10);

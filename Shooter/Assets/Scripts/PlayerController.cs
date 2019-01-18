@@ -21,9 +21,16 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         currentFireRate = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnDestroy()
+    {
+        GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
+        GameController controller = controlObj.GetComponent<GameController>();
+        controller.GameOver();
+    }
+
+    // Update is called once per frame
+    void Update () {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
