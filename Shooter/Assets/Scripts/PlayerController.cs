@@ -29,6 +29,15 @@ public class PlayerController : MonoBehaviour {
         controller.GameOver();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("EnemyBolt"))
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update () {
         float horizontal = Input.GetAxis("Horizontal");

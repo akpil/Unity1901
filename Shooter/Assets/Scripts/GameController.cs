@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public AsteroidMovement[] astroidPrefab;
     public EnemyController enemyShipPrefab;
-
+    public PlayerController player;
     public UIController uiController;
 
     public BGScroller bg1;
@@ -16,12 +17,13 @@ public class GameController : MonoBehaviour {
     public float SpawnRate;
 
     private Coroutine enemy;
+    private bool isGameOver;
 
     // Use this for initialization
     void Start () {
         enemy = StartCoroutine(SpawnEnemy());
         Score = 0;
-
+        isGameOver = false;
     }
 
     public void AddScore(int value)
@@ -37,9 +39,29 @@ public class GameController : MonoBehaviour {
         //배경 멈추기
         bg1.StopMove();
         bg2.StopMove();
+        StartCoroutine(GameOverRoutine());
+    }
+
+    private IEnumerator GameOverRoutine()
+    {
+        yield return new WaitForSeconds(6);
         //game  over 알려주기
         uiController.ShowGameOver();
         //다시시작 활성화 하기
+        isGameOver = true;
+    }
+
+    public void ReStart()
+    {
+        SceneManager.LoadScene(0);
+        //enemy = StartCoroutine(SpawnEnemy());
+        //bg1.StartMove();
+        //bg2.StartMove();
+        //Score = 0;
+        //uiController.ShowScore(Score);
+        //uiController.HideGameOver();
+        //Instantiate(player);
+        //isGameOver = false;
     }
 
     private IEnumerator SpawnEnemy()
@@ -101,5 +123,9 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if (isGameOver && Input.GetKeyDown(KeyCode.R))
+        {
+            ReStart();
+        }
     }
 }

@@ -21,6 +21,12 @@ public class UIController : MonoBehaviour {
         RestartText.gameObject.SetActive(true);
     }
 
+    public void HideGameOver()
+    {
+        GameOverText.text = "";
+        RestartText.gameObject.SetActive(false);
+    }
+
     public void ShowScore(int score)
     {
         ScoreText.text = "Score : " + score.ToString();
