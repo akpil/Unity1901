@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Torque: 3
   Speed: 3
+  effectPrefab: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
 --- !u!136 &136162379086780356
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour {
 
     private SoundController sound;
 
+    public GameObject effectPrefab;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
@@ -63,7 +65,10 @@ public class EnemyController : MonoBehaviour {
             Destroy(other.gameObject);
             Destroy(gameObject);
             sound.PlayEffect(1);
-            
+
+            GameObject effect = Instantiate(effectPrefab);
+            effect.transform.position = transform.position;
+
             GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
             GameController controller = controlObj.GetComponent<GameController>();
             controller.AddScore(20);

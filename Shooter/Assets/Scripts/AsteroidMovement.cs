@@ -7,6 +7,8 @@ public class AsteroidMovement : MonoBehaviour {
     private Rigidbody rb;
     public float Torque;
     public float Speed;
+    public GameObject effectPrefab;
+
 
     // Use this for initialization
     void Start () {
@@ -25,6 +27,9 @@ public class AsteroidMovement : MonoBehaviour {
 
             SoundController sound = (GameObject.FindGameObjectWithTag("SoundController")).GetComponent<SoundController>();
             sound.PlayEffect(0);
+
+            GameObject effect = Instantiate(effectPrefab);
+            effect.transform.position = transform.position;
 
             GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
             GameController controller = controlObj.GetComponent<GameController>();
