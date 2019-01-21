@@ -251,6 +251,7 @@ MonoBehaviour:
   boltPrefab: {fileID: 114804722959885620, guid: 8bf95a9c96a740a4cb6f6f60ce41bd90,
     type: 2}
   fireRate: 0.2
+  effectPrefab: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
   Speed: 5
   Tilt: 30
   xMin: -5.5

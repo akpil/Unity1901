@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
     public float fireRate;
     private float currentFireRate;
 
+    public GameObject effectPrefab;
+
     private Rigidbody rb;
     public float Speed;
     public float Tilt;
@@ -16,16 +18,23 @@ public class PlayerController : MonoBehaviour {
     public float xMax;
     public float zMin;
     public float zMax;
+
+    private SoundController sound;
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
         currentFireRate = 0;
+        GameObject soundObj = GameObject.FindGameObjectWithTag("SoundController");
+        sound = soundObj.GetComponent<SoundController>();
     }
 
     private void OnDestroy()
     {
         GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
         GameController controller = controlObj.GetComponent<GameController>();
+        sound.PlayEffect(2);
+        GameObject effect = Instantiate(effectPrefab);
+        effect.transform.position = transform.position;
         controller.GameOver();
     }
 
@@ -55,6 +64,7 @@ public class PlayerController : MonoBehaviour {
         {
             Bolt newBolt = Instantiate(boltPrefab);
             newBolt.transform.position = boltPosition.position;
+            sound.PlayEffect(4);
             currentFireRate = fireRate;
         }
         currentFireRate -= Time.deltaTime;

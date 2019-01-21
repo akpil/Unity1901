@@ -9,10 +9,16 @@ public class EnemyController : MonoBehaviour {
 
     private Rigidbody rb;
     public float Speed;
+
+    private SoundController sound;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * Speed;
+        GameObject soundObj = GameObject.FindGameObjectWithTag("SoundController");
+        sound = soundObj.GetComponent<SoundController>();
+
         StartCoroutine(enemyFire());
         StartCoroutine(enemyMovement());
 	}
@@ -43,6 +49,7 @@ public class EnemyController : MonoBehaviour {
         while (true)
         {
             Bolt newBolt = Instantiate(enemyBolt);
+            sound.PlayEffect(3);
             newBolt.transform.position = boltPosition.position;
             yield return new WaitForSeconds(1);
         }
@@ -55,6 +62,7 @@ public class EnemyController : MonoBehaviour {
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
+            sound.PlayEffect(1);
             
             GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
             GameController controller = controlObj.GetComponent<GameController>();

@@ -22,7 +22,10 @@ public class AsteroidMovement : MonoBehaviour {
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
-            
+
+            SoundController sound = (GameObject.FindGameObjectWithTag("SoundController")).GetComponent<SoundController>();
+            sound.PlayEffect(0);
+
             GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
             GameController controller = controlObj.GetComponent<GameController>();
             controller.AddScore(10);
