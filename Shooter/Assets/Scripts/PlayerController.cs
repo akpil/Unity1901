@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public Transform boltPosition;
-    public Bolt boltPrefab;
+    public Bolt[] boltPrefab;
     public float fireRate;
     private float currentFireRate;
+    private int boltID;
+
 
     public GameObject effectPrefab;
 
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         rb = GetComponent<Rigidbody>();
         currentFireRate = 0;
+        boltID = 0;
         GameObject soundObj = GameObject.FindGameObjectWithTag("SoundController");
         sound = soundObj.GetComponent<SoundController>();
     }
@@ -45,6 +48,12 @@ public class PlayerController : MonoBehaviour {
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
+        if(other.gameObject.CompareTag("PowerUPItem"))
+        {
+            boltID = 1;
+            fireRate -= 0.01f;
+            Destroy(other.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -62,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetButton("Fire1") && currentFireRate <= 0)
         {
-            Bolt newBolt = Instantiate(boltPrefab);
+            Bolt newBolt = Instantiate(boltPrefab[boltID]);
             newBolt.transform.position = boltPosition.position;
             sound.PlayEffect(4);
             currentFireRate = fireRate;

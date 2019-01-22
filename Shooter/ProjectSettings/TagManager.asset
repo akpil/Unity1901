@@ -8,6 +8,7 @@ TagManager:
   - PlayerBolt
   - EnemyBolt
   - SoundController
+  - PowerUPItem
   layers:
   - Default
   - TransparentFX

@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour {
 
     public void ReStart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         //enemy = StartCoroutine(SpawnEnemy());
         //bg1.StartMove();
         //bg2.StartMove();

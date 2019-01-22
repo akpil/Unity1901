@@ -8,7 +8,7 @@ public class AsteroidMovement : MonoBehaviour {
     public float Torque;
     public float Speed;
     public GameObject effectPrefab;
-
+    public Item itemPrefab;
 
     // Use this for initialization
     void Start () {
@@ -27,6 +27,13 @@ public class AsteroidMovement : MonoBehaviour {
 
             SoundController sound = (GameObject.FindGameObjectWithTag("SoundController")).GetComponent<SoundController>();
             sound.PlayEffect(0);
+
+            float rate = Random.Range(0.0f, 1f);
+            if (rate < 0.25f)
+            {
+                Item newItem = Instantiate(itemPrefab);
+                newItem.transform.position = transform.position;
+            }
 
             GameObject effect = Instantiate(effectPrefab);
             effect.transform.position = transform.position;
