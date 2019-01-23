@@ -8,14 +8,20 @@ public class BossController : MonoBehaviour {
     public Transform boltPosition;
     private Coroutine fireRoutine;
 
+    public GameObject effectPrefab;
+    private SoundController sound;
+
     private Rigidbody rb;
+
+    private bool StartAttack;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
         StartCoroutine(MovePhase());
         currentHP = MaxHP;
-
+        GameObject soundObj = GameObject.FindGameObjectWithTag("SoundController");
+        sound = soundObj.GetComponent<SoundController>();
     }
 
     private IEnumerator Fire()
@@ -24,19 +30,21 @@ public class BossController : MonoBehaviour {
         {
             Bolt newBolt = Instantiate(bossBoltPrefab);
             newBolt.transform.position = boltPosition.position;
-
+            sound.PlayEffect(3);
             yield return new WaitForSeconds(0.2f);
         }
     }
 
     private IEnumerator MovePhase()
     {
+        StartAttack = false;
         rb.velocity = transform.forward * 2;
         while (transform.position.z > 10)
         {
             yield return new WaitForSeconds(0.1f);
         }
         rb.velocity = Vector3.zero;
+        StartAttack = true;
 
         fireRoutine = StartCoroutine(Fire());
         rb.velocity = transform.right * 2;
@@ -67,14 +75,21 @@ public class BossController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PlayerBolt"))
+        if (StartAttack && other.gameObject.CompareTag("PlayerBolt"))
         {
             // 체력감소
             currentHP--;
             Debug.Log(currentHP);
             if (currentHP <= 0)
             {
+                GameObject effect = Instantiate(effectPrefab);
+                effect.transform.position = transform.position;
+                sound.PlayEffect(1);
                 Destroy(gameObject);
+
+                GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
+                GameController controller = controlObj.GetComponent<GameController>();
+                controller.BossDead();
             }
         }
     }

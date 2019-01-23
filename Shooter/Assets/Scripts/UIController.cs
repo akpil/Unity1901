@@ -8,11 +8,26 @@ public class UIController : MonoBehaviour {
     public Text GameOverText;
     public Text RestartText;
 
+    public GameObject HpBarBorder;
+    public Image HpBar;
+
 	// Use this for initialization
 	void Start () {
         ScoreText.text = "Score : 0";
         GameOverText.text = "";
         RestartText.gameObject.SetActive(false);
+    }
+    public void ShowHP(float amount)
+    {
+        HpBar.fillAmount = amount;
+    }
+    public void ShowHPBar()
+    {
+        HpBarBorder.SetActive(true);
+    }
+    public void HideHPBar()
+    {
+        HpBarBorder.SetActive(false);
     }
 
     public void ShowGameOver()

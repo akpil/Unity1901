@@ -176,6 +176,7 @@ MonoBehaviour:
   bossBoltPrefab: {fileID: 114119029963491690, guid: 50665277f152c7d46aef484b41993087,
     type: 2}
   boltPosition: {fileID: 4576468739068936}
+  effectPrefab: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
   MaxHP: 10
 --- !u!135 &135834513058317154
 SphereCollider:

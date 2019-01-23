@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour {
     public AsteroidMovement[] astroidPrefab;
     public EnemyController enemyShipPrefab;
     public PlayerController player;
+    public BossController bossPrefab;
+
     public UIController uiController;
 
     public BGScroller bg1;
@@ -15,6 +17,9 @@ public class GameController : MonoBehaviour {
     private int Score;
 
     public float SpawnRate;
+    public int BossSpawnCount;
+    private int currentBossSpwanCount;
+    private bool isBossPhase;
 
     private Coroutine enemy;
     private bool isGameOver;
@@ -24,6 +29,9 @@ public class GameController : MonoBehaviour {
         enemy = StartCoroutine(SpawnEnemy());
         Score = 0;
         isGameOver = false;
+
+        currentBossSpwanCount = 0;
+        isBossPhase = false;
     }
 
     public void AddScore(int value)
@@ -112,13 +120,34 @@ public class GameController : MonoBehaviour {
             }
             else
             {
+                currentBossSpwanCount++;
                 AstCount = 10;
                 EnemyCount = 5;
                 yield return new WaitForSeconds(SpawnRate);
+                if (currentBossSpwanCount >= BossSpawnCount)
+                {
+                    currentBossSpwanCount = 0;
+                    isBossPhase = true;
+                    Instantiate(bossPrefab);
+                    while (isBossPhase)
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    yield return new WaitForSeconds(SpawnRate);
+                }
+                else
+                {
+                    continue;
+                }
             }
-
-            
         }
+    }
+
+    public void BossDead()
+    {
+        Score += 1000;
+        uiController.ShowScore(Score);
+        isBossPhase = false;
     }
 
 	// Update is called once per frame
