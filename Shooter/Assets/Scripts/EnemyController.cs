@@ -24,7 +24,13 @@ public class EnemyController : MonoBehaviour {
         StartCoroutine(enemyFire());
         StartCoroutine(enemyMovement());
 	}
-	
+
+    public void AddSpeed(float amount)
+    {
+        Speed += amount;
+        rb.velocity = transform.forward * Speed;
+    }
+
 	// Update is called once per frame
 	void Update () {
 		

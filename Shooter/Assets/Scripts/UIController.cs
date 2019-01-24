@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
     public Text ScoreText;
-    public Text GameOverText;
+    public Text GameStatusText;
     public Text RestartText;
 
     public GameObject HpBarBorder;
@@ -14,7 +14,6 @@ public class UIController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ScoreText.text = "Score : 0";
-        GameOverText.text = "";
         RestartText.gameObject.SetActive(false);
     }
     public void ShowHP(float amount)
@@ -30,15 +29,21 @@ public class UIController : MonoBehaviour {
         HpBarBorder.SetActive(false);
     }
 
+    public void ShowStatus(string input)
+    {
+        Debug.Log(input);
+        GameStatusText.text = input;
+    }
+
     public void ShowGameOver()
     {
-        GameOverText.text = "Game Over!";
+        GameStatusText.text = "Game Over!";
         RestartText.gameObject.SetActive(true);
     }
 
     public void HideGameOver()
     {
-        GameOverText.text = "";
+        GameStatusText.text = "";
         RestartText.gameObject.SetActive(false);
     }
 

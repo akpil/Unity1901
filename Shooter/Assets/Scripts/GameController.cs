@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour {
     private Coroutine enemy;
     private bool isGameOver;
 
+    private int AstCount = 10;
+    private int EnemyCount = 5;
+
     // Use this for initialization
     void Start () {
         enemy = StartCoroutine(SpawnEnemy());
@@ -74,8 +77,12 @@ public class GameController : MonoBehaviour {
 
     private IEnumerator SpawnEnemy()
     {
-        int AstCount = 10;
-        int EnemyCount = 5;
+        int waveCount = 1;
+        uiController.ShowStatus("Wave " + waveCount.ToString());
+        Debug.Log("$$$");
+        yield return new WaitForSeconds(SpawnRate);
+        uiController.ShowStatus("");
+        Debug.Log("^^^^");
         while (true)
         {
             if (AstCount > 0 && EnemyCount > 0)
@@ -123,7 +130,6 @@ public class GameController : MonoBehaviour {
                 currentBossSpwanCount++;
                 AstCount = 10;
                 EnemyCount = 5;
-                yield return new WaitForSeconds(SpawnRate);
                 if (currentBossSpwanCount >= BossSpawnCount)
                 {
                     currentBossSpwanCount = 0;
@@ -133,12 +139,13 @@ public class GameController : MonoBehaviour {
                     {
                         yield return new WaitForSeconds(0.5f);
                     }
-                    yield return new WaitForSeconds(SpawnRate);
                 }
-                else
-                {
-                    continue;
-                }
+                waveCount++;
+
+                uiController.ShowStatus("Wave " + waveCount.ToString());
+                yield return new WaitForSeconds(SpawnRate);
+                uiController.ShowStatus("");
+                
             }
         }
     }

@@ -17,6 +17,12 @@ public class AsteroidMovement : MonoBehaviour {
         rb.velocity = Vector3.back * Speed;
     }
 
+    public void AddSpeed(float amount)
+    {
+        Speed += amount;
+        rb.velocity = transform.forward * Speed;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") ||

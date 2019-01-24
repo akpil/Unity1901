@@ -10,10 +10,12 @@ public class BossController : MonoBehaviour {
 
     public GameObject effectPrefab;
     private SoundController sound;
-
+    private GameController controller;
     private Rigidbody rb;
 
     private bool StartAttack;
+
+    private UIController ui;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +24,12 @@ public class BossController : MonoBehaviour {
         currentHP = MaxHP;
         GameObject soundObj = GameObject.FindGameObjectWithTag("SoundController");
         sound = soundObj.GetComponent<SoundController>();
+        GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
+        controller = controlObj.GetComponent<GameController>();
+        ui = controller.uiController;
+
+        ui.ShowHP(1);
+        ui.ShowHPBar();
     }
 
     private IEnumerator Fire()
@@ -79,6 +87,7 @@ public class BossController : MonoBehaviour {
         {
             // 체력감소
             currentHP--;
+            ui.ShowHP((float)currentHP/MaxHP);
             Debug.Log(currentHP);
             if (currentHP <= 0)
             {
@@ -86,9 +95,8 @@ public class BossController : MonoBehaviour {
                 effect.transform.position = transform.position;
                 sound.PlayEffect(1);
                 Destroy(gameObject);
-
-                GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
-                GameController controller = controlObj.GetComponent<GameController>();
+                ui.HideHPBar();
+                
                 controller.BossDead();
             }
         }

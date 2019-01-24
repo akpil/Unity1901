@@ -491,7 +491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &380114633
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1230,7 +1230,7 @@ GameObject:
   - component: {fileID: 1107928693}
   - component: {fileID: 1107928692}
   m_Layer: 5
-  m_Name: GameOverText
+  m_Name: GameStatusText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1325,10 +1325,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 2006978698}
-  GameOverText: {fileID: 1107928692}
+  GameStatusText: {fileID: 1107928692}
   RestartText: {fileID: 586442280}
-  HpBarBorder: {fileID: 0}
-  HpBar: {fileID: 0}
+  HpBarBorder: {fileID: 380114632}
+  HpBar: {fileID: 1545691453}
 --- !u!114 &1379747679
 MonoBehaviour:
   m_ObjectHideFlags: 0
