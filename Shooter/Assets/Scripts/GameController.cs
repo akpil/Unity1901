@@ -24,11 +24,17 @@ public class GameController : MonoBehaviour {
     private Coroutine enemy;
     private bool isGameOver;
 
-    private int AstCount = 10;
-    private int EnemyCount = 5;
+    private int AstCount;
+    private int EnemyCount;
+    private int BaseAstCount;
+    private int BaseEnemyCount;
+    private float BaseSpeed;
 
     // Use this for initialization
     void Start () {
+        BaseSpeed = 0;
+        BaseAstCount = 10;
+        BaseEnemyCount = 5;
         enemy = StartCoroutine(SpawnEnemy());
         Score = 0;
         isGameOver = false;
@@ -79,12 +85,14 @@ public class GameController : MonoBehaviour {
     {
         int waveCount = 1;
         uiController.ShowStatus("Wave " + waveCount.ToString());
-        Debug.Log("$$$");
         yield return new WaitForSeconds(SpawnRate);
         uiController.ShowStatus("");
-        Debug.Log("^^^^");
+
+        AstCount = BaseAstCount;
+        EnemyCount = BaseEnemyCount;
         while (true)
         {
+
             if (AstCount > 0 && EnemyCount > 0)
             {
                 int randValue = Random.Range(0, 2);
@@ -93,6 +101,7 @@ public class GameController : MonoBehaviour {
                     int index = Random.Range(0, astroidPrefab.Length);
                     AsteroidMovement newAst = Instantiate(astroidPrefab[index]);
                     newAst.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 0, 16);
+                    newAst.AddSpeed(BaseSpeed);
                     AstCount--;
                     yield return new WaitForSeconds(0.5f);
                 }
@@ -100,6 +109,7 @@ public class GameController : MonoBehaviour {
                 {
                     EnemyController newEnemy = Instantiate(enemyShipPrefab);
                     newEnemy.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 0, 16);
+                    newEnemy.AddSpeed(BaseSpeed);
                     EnemyCount--;
                     yield return new WaitForSeconds(0.5f);
                 }
@@ -111,6 +121,7 @@ public class GameController : MonoBehaviour {
                     int index = Random.Range(0, astroidPrefab.Length);
                     AsteroidMovement newAst = Instantiate(astroidPrefab[index]);
                     newAst.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 0, 16);
+                    newAst.AddSpeed(BaseSpeed);
                     yield return new WaitForSeconds(0.5f);
                 }
                 AstCount = 0;
@@ -121,6 +132,7 @@ public class GameController : MonoBehaviour {
                 {
                     EnemyController newEnemy = Instantiate(enemyShipPrefab);
                     newEnemy.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 0, 16);
+                    newEnemy.AddSpeed(BaseSpeed);
                     yield return new WaitForSeconds(0.5f);
                 }
                 EnemyCount = 0;
@@ -128,8 +140,7 @@ public class GameController : MonoBehaviour {
             else
             {
                 currentBossSpwanCount++;
-                AstCount = 10;
-                EnemyCount = 5;
+                
                 if (currentBossSpwanCount >= BossSpawnCount)
                 {
                     currentBossSpwanCount = 0;
@@ -140,12 +151,18 @@ public class GameController : MonoBehaviour {
                         yield return new WaitForSeconds(0.5f);
                     }
                 }
+                BaseSpeed += 0.1f * waveCount;
                 waveCount++;
+
+                BaseAstCount++;
+                BaseEnemyCount++;
+
+                AstCount = BaseAstCount;
+                EnemyCount = BaseEnemyCount;
 
                 uiController.ShowStatus("Wave " + waveCount.ToString());
                 yield return new WaitForSeconds(SpawnRate);
-                uiController.ShowStatus("");
-                
+                uiController.ShowStatus("");                
             }
         }
     }

@@ -11,7 +11,7 @@ public class AsteroidMovement : MonoBehaviour {
     public Item itemPrefab;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         rb = GetComponent<Rigidbody>();
         rb.angularVelocity = Random.onUnitSphere * Torque;
         rb.velocity = Vector3.back * Speed;
@@ -20,7 +20,7 @@ public class AsteroidMovement : MonoBehaviour {
     public void AddSpeed(float amount)
     {
         Speed += amount;
-        rb.velocity = transform.forward * Speed;
+        rb.velocity = Vector3.back * Speed;
     }
 
     private void OnTriggerEnter(Collider other)

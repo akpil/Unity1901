@@ -15,15 +15,18 @@ public class EnemyController : MonoBehaviour {
     public GameObject effectPrefab;
 
 	// Use this for initialization
-	void Start () {
+	void Awake() {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * Speed;
         GameObject soundObj = GameObject.FindGameObjectWithTag("SoundController");
         sound = soundObj.GetComponent<SoundController>();
+	}
 
+    private void Start()
+    {
         StartCoroutine(enemyFire());
         StartCoroutine(enemyMovement());
-	}
+    }
 
     public void AddSpeed(float amount)
     {
