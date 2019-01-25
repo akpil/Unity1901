@@ -259,6 +259,7 @@ MonoBehaviour:
   xMax: 5.5
   zMin: -4.25
   zMax: 9.5
+  MaxHP: 3
 --- !u!198 &198679494478036786
 ParticleSystem:
   m_ObjectHideFlags: 1

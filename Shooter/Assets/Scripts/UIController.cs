@@ -11,11 +11,22 @@ public class UIController : MonoBehaviour {
     public GameObject HpBarBorder;
     public Image HpBar;
 
+    public GameObject[] PlayerHP;
+
 	// Use this for initialization
 	void Start () {
         ScoreText.text = "Score : 0";
         RestartText.gameObject.SetActive(false);
     }
+
+    public void ShowPlayerHP(int currentHP, int maxHP)
+    {
+        for (int i = 0; i < maxHP - currentHP; i++)
+        {
+            PlayerHP[i].SetActive(false);
+        }
+    }
+
     public void ShowHP(float amount)
     {
         HpBar.fillAmount = amount;

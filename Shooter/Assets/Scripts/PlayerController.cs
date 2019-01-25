@@ -21,20 +21,26 @@ public class PlayerController : MonoBehaviour {
     public float zMin;
     public float zMax;
 
+    public int MaxHP;
+    private int currentHP;
+
     private SoundController sound;
+    private GameController controller;
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
         currentFireRate = 0;
         boltID = 0;
+        currentHP = MaxHP;
         GameObject soundObj = GameObject.FindGameObjectWithTag("SoundController");
         sound = soundObj.GetComponent<SoundController>();
+        GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
+        controller = controlObj.GetComponent<GameController>();
     }
 
     private void OnDestroy()
     {
-        GameObject controlObj = GameObject.FindGameObjectWithTag("GameController");
-        GameController controller = controlObj.GetComponent<GameController>();
+        
         sound.PlayEffect(2);
         GameObject effect = Instantiate(effectPrefab);
         effect.transform.position = transform.position;
@@ -45,7 +51,13 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("EnemyBolt"))
         {
-            Destroy(gameObject);
+            currentHP--;
+            Debug.Log("current HP " + currentHP.ToString());
+            controller.uiController.ShowPlayerHP(currentHP, MaxHP);
+            if (currentHP <= 0)
+            {
+                Destroy(gameObject);
+            }
             Destroy(other.gameObject);
         }
         if(other.gameObject.CompareTag("PowerUPItem"))
@@ -54,6 +66,20 @@ public class PlayerController : MonoBehaviour {
             fireRate -= 0.01f;
             Destroy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("HPUPItem"))
+        {
+            if (currentHP < MaxHP)
+            {
+                currentHP++;
+                if (currentHP > MaxHP)
+                {
+                    currentHP = MaxHP;
+                }
+            }
+            
+
+        }
+
     }
 
     // Update is called once per frame
