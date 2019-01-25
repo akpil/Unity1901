@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
     public AsteroidMovement[] astroidPrefab;
     public EnemyController enemyShipPrefab;
+    public Stoker stokerPrefab;
     public PlayerController player;
     public BossController bossPrefab;
 
@@ -29,12 +30,14 @@ public class GameController : MonoBehaviour {
     private int BaseAstCount;
     private int BaseEnemyCount;
     private float BaseSpeed;
+    private int BaseStokerCount;
 
     // Use this for initialization
     void Start () {
         BaseSpeed = 0;
         BaseAstCount = 10;
         BaseEnemyCount = 5;
+        BaseStokerCount = 3;
         enemy = StartCoroutine(SpawnEnemy());
         Score = 0;
         isGameOver = false;
@@ -84,14 +87,23 @@ public class GameController : MonoBehaviour {
     private IEnumerator SpawnEnemy()
     {
         int waveCount = 1;
+        
         uiController.ShowStatus("Wave " + waveCount.ToString());
         yield return new WaitForSeconds(SpawnRate);
         uiController.ShowStatus("");
 
         AstCount = BaseAstCount;
         EnemyCount = BaseEnemyCount;
+        int stokerCount = BaseStokerCount;
         while (true)
         {
+            if (stokerCount > 0)
+            {
+                Stoker newStoker = Instantiate(stokerPrefab);
+                newStoker.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 0, 16);
+                newStoker.AddSpeed(BaseSpeed);
+                stokerCount--;
+            }
 
             if (AstCount > 0 && EnemyCount > 0)
             {
@@ -159,7 +171,7 @@ public class GameController : MonoBehaviour {
 
                 AstCount = BaseAstCount;
                 EnemyCount = BaseEnemyCount;
-
+                stokerCount = BaseStokerCount;
                 uiController.ShowStatus("Wave " + waveCount.ToString());
                 yield return new WaitForSeconds(SpawnRate);
                 uiController.ShowStatus("");                

@@ -146,6 +146,8 @@ MonoBehaviour:
   - {fileID: 114929180835314764, guid: 3cafb582163c7814f9616eb1a5f70761, type: 2}
   enemyShipPrefab: {fileID: 114651310396081520, guid: fe80372abfb264b4b8035101883c839a,
     type: 2}
+  stokerPrefab: {fileID: 114733855751876056, guid: 1118b6949f86a01459d16d5329a224c5,
+    type: 2}
   player: {fileID: 114744241470108786, guid: a30b9dc58cff5514c8d002fe2a2b96ff, type: 2}
   bossPrefab: {fileID: 114345877524974134, guid: ddacfb27e6514704dad0f1e966228789,
     type: 2}
