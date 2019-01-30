@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
     public float MaxSpeed;
     public float Jump;
+    public float Damage;
     private bool onGround;
     private int animSpeedHash;
     private int animAttackHash;
@@ -60,6 +61,11 @@ public class PlayerController : MonoBehaviour {
             rb2d.velocity = new Vector2(rb2d.velocity.x, Jump);
         }
 	}
+
+    public void AttackTarget(GameObject target)
+    {
+        target.SendMessage("Hit", Damage);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
