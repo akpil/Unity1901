@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     private int animAttackHash;
     private int animJumpHash;
     private int animDeadHash;
+    private int animVertSpeedHash;
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
@@ -21,7 +22,8 @@ public class PlayerController : MonoBehaviour {
         animAttackHash = Animator.StringToHash("IsAttack");
         animJumpHash = Animator.StringToHash("IsJump");
         animDeadHash = Animator.StringToHash("IsDead");
-	}
+        animVertSpeedHash = Animator.StringToHash("VertSpeed");
+    }
 
     public void Dead()
     {
@@ -73,6 +75,8 @@ public class PlayerController : MonoBehaviour {
             anim.SetBool(animJumpHash, true);
             rb2d.velocity = new Vector2(rb2d.velocity.x, Jump);
         }
+
+        anim.SetFloat(animVertSpeedHash, rb2d.velocity.y);
 	}
 
     public void AttackTarget(GameObject target)

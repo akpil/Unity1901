@@ -8,7 +8,10 @@ public class Jelly : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Get Jelly!");
+            GameObject.FindGameObjectWithTag("GameController").
+                            GetComponent<GameController>().
+                            ChangeSubStage(1);
+
             gameObject.SetActive(false);
         }
     }
