@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     private int animSpeedHash;
     private int animAttackHash;
     private int animJumpHash;
+    private int animDeadHash;
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
@@ -19,10 +20,22 @@ public class PlayerController : MonoBehaviour {
         animSpeedHash = Animator.StringToHash("Speed");
         animAttackHash = Animator.StringToHash("IsAttack");
         animJumpHash = Animator.StringToHash("IsJump");
+        animDeadHash = Animator.StringToHash("IsDead");
 	}
-	
+
+    public void Dead()
+    {
+        anim.SetBool(animDeadHash, true);
+    }
+
 	// Update is called once per frame
 	void Update () {
+
+        if (anim.GetBool(animDeadHash))
+        {
+            return;
+        }
+
         float horizontal;
         if (anim.GetBool(animAttackHash))
         {

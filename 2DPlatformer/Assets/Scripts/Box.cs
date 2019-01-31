@@ -13,6 +13,15 @@ public class Box : MonoBehaviour {
 
         if(HP <= 0)
         {
+            StartCoroutine(waiter());
+        }
+    }
+
+    private IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(3);
+        if (HP == 0)
+        {
             platformController.StartMove();
         }
     }
