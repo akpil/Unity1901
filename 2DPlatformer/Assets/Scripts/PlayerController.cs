@@ -9,37 +9,28 @@ public class PlayerController : MonoBehaviour {
     public float Jump;
     public float Damage;
     private bool onGround;
-    private int animSpeedHash;
-    private int animAttackHash;
-    private int animJumpHash;
-    private int animDeadHash;
-    private int animVertSpeedHash;
+
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        animSpeedHash = Animator.StringToHash("Speed");
-        animAttackHash = Animator.StringToHash("IsAttack");
-        animJumpHash = Animator.StringToHash("IsJump");
-        animDeadHash = Animator.StringToHash("IsDead");
-        animVertSpeedHash = Animator.StringToHash("VertSpeed");
     }
 
     public void Dead()
     {
-        anim.SetBool(animDeadHash, true);
+        anim.SetBool(AnimHash.Dead, true);
     }
 
 	// Update is called once per frame
 	void Update () {
 
-        if (anim.GetBool(animDeadHash))
+        if (anim.GetBool(AnimHash.Dead))
         {
             return;
         }
 
         float horizontal;
-        if (anim.GetBool(animAttackHash))
+        if (anim.GetBool(AnimHash.Attack))
         {
             horizontal = 0;
         }
@@ -49,7 +40,7 @@ public class PlayerController : MonoBehaviour {
         }
         rb2d.velocity = new Vector2(horizontal, rb2d.velocity.y);
 
-        anim.SetFloat(animSpeedHash, Mathf.Abs(horizontal));
+        anim.SetFloat(AnimHash.Speed, Mathf.Abs(horizontal));
 
         if (horizontal < 0)
         {
@@ -63,20 +54,20 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetButtonDown("Fire1"))
         {
-            anim.SetBool(animAttackHash, true);
+            anim.SetBool(AnimHash.Attack, true);
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            anim.SetBool(animAttackHash, false);
+            anim.SetBool(AnimHash.Attack, false);
         }
 
         if (onGround && Input.GetButtonDown("Jump"))
         {
-            anim.SetBool(animJumpHash, true);
+            anim.SetBool(AnimHash.Jump, true);
             rb2d.velocity = new Vector2(rb2d.velocity.x, Jump);
         }
 
-        anim.SetFloat(animVertSpeedHash, rb2d.velocity.y);
+        anim.SetFloat(AnimHash.VertSpeed, rb2d.velocity.y);
 	}
 
     public void AttackTarget(GameObject target)
@@ -89,7 +80,7 @@ public class PlayerController : MonoBehaviour {
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
-            anim.SetBool(animJumpHash, false);
+            anim.SetBool(AnimHash.Jump, false);
         }
     }
 
