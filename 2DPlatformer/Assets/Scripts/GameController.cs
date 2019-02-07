@@ -33,10 +33,14 @@ public class GameController : MonoBehaviour {
 
         if (Score >= 1)
         {
-            
             subStageCount++;
             cameraAnim.SetInteger(AnimHash.View, subStageCount);
         }
+    }
+
+    public void GameFinish()
+    {
+        Debug.Log("Game Finish");
     }
 
 	// Update is called once per frame

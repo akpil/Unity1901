@@ -15,5 +15,6 @@ public class InvisiblePlatform : MonoBehaviour {
     private void OnCollisionExit2D(Collision2D collision)
     {
         image.SetActive(false);
+
     }
 }
