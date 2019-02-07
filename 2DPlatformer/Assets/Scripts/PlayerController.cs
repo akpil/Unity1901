@@ -8,12 +8,15 @@ public class PlayerController : MonoBehaviour {
     public float MaxSpeed;
     public float Jump;
     public float Damage;
+    public float MaxHP;
+    private float currentHP;
     private bool onGround;
 
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        currentHP = MaxHP;
     }
 
     public void Dead()
@@ -73,6 +76,15 @@ public class PlayerController : MonoBehaviour {
     public void AttackTarget(GameObject target)
     {
         target.SendMessage("Hit", Damage);
+    }
+
+    public void Hit(float damage)
+    {
+        currentHP -= damage;
+        if (currentHP <= 0)
+        {
+            anim.SetBool(AnimHash.Dead, true);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour {
     {
         rb2d.velocity = Vector2.zero;
         anim.SetBool(AnimHash.Attack, true);
+        
     }
 
     public void StopAttack()
@@ -109,6 +110,11 @@ public class EnemyController : MonoBehaviour {
             Stop();
             Rotate();
             Move();
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            StartAttack();
+            collision.gameObject.SendMessage("Hit", 1);
         }
     }
 

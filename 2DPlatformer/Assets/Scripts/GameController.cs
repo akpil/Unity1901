@@ -30,8 +30,10 @@ public class GameController : MonoBehaviour {
     private IEnumerator CameraMove()
     {
         yield return new WaitForSeconds(10);
-        if (Score == 1)
+
+        if (Score >= 1)
         {
+            
             subStageCount++;
             cameraAnim.SetInteger(AnimHash.View, subStageCount);
         }
