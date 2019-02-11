@@ -35,6 +35,11 @@ public class GameController : MonoBehaviour {
         StartCoroutine(CameraMove());
     }
 
+    public void SetSpeed(float speed)
+    {
+        Time.timeScale = speed;
+    }
+
     private IEnumerator CameraMove()
     {
         yield return new WaitForSeconds(10);
@@ -62,6 +67,7 @@ public class GameController : MonoBehaviour {
 
     public void ReStart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
