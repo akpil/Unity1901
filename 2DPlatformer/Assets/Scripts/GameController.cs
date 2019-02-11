@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public Animator cameraAnim;
@@ -48,10 +49,24 @@ public class GameController : MonoBehaviour {
     public void GameFinish()
     {
         Debug.Log("Game Finish");
+        isPlay = false;
+        uiCont.ShowResultWindow("Game Clear!!", playTime);
     }
 
-	// Update is called once per frame
-	void Update () {
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+        isPlay = false;
+        uiCont.ShowResultWindow("Game Over!!", playTime);
+    }
+
+    public void ReStart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if(isPlay)
         {
             playTime += Time.deltaTime;

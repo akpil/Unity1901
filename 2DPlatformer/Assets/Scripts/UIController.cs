@@ -7,6 +7,11 @@ public class UIController : MonoBehaviour {
     public Text timeText;
     public HPBar HPbarPrefab;
     public Image PlayerHPBar;
+
+    public GameObject ResultWindow;
+    public Text ResultText;
+    public Text PlayTimeText; 
+
 	// Use this for initialization
 	void Start () {
         timeText.text = "0.0";
@@ -27,6 +32,13 @@ public class UIController : MonoBehaviour {
         timeText.text = time.ToString("f2");
     }
 	
+    public void ShowResultWindow(string gameStatus, float time)
+    {
+        ResultText.text = gameStatus;
+        PlayTimeText.text = time.ToString("f2");
+        ResultWindow.SetActive(true);
+    }
+
 	// Update is called once per frame
 	void Update () {
 		

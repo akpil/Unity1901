@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     private float currentHP;
     private bool onGround;
     private UIController uiCont;
+    private GameController control;
 
 	// Use this for initialization
 	void Start () {
@@ -20,11 +21,14 @@ public class PlayerController : MonoBehaviour {
         currentHP = MaxHP;
         uiCont = GameObject.FindGameObjectWithTag("UI")
                 .GetComponent<UIController>();
+        control = GameObject.FindGameObjectWithTag("GameController")
+                .GetComponent<GameController>();
     }
 
     public void Dead()
     {
         anim.SetBool(AnimHash.Dead, true);
+        control.GameOver();
     }
 
 	// Update is called once per frame
@@ -88,6 +92,7 @@ public class PlayerController : MonoBehaviour {
         if (currentHP <= 0)
         {
             anim.SetBool(AnimHash.Dead, true);
+            control.GameOver();
         }
     }
 
