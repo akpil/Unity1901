@@ -10,20 +10,25 @@ public class EnemyController : MonoBehaviour {
 
     public float MaxHP;
     private float currentHP;
+    public Transform HPBarPos;
 
     private Coroutine stateMachine;
 
     public int Score;
     private GameController controller;
-
+    private UIController uiCont;
+    private Timer timer;
     // Use this for initialization
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        timer = GetComponent<Timer>();
         currentHP = MaxHP;
         stateMachine = StartCoroutine(StateMachine());
         controller = GameObject.FindGameObjectWithTag("GameController").
                                         GetComponent<GameController>();
+        uiCont = GameObject.FindGameObjectWithTag("UI")
+                .GetComponent<UIController>();
     }
 
     public void Move()
@@ -35,7 +40,9 @@ public class EnemyController : MonoBehaviour {
     public void Hit(float damage)
     {
         currentHP -= damage;
-        // UI
+        HPBar hp = uiCont.GetHPBar();
+        hp.transform.position = HPBarPos.position;
+        hp.ShowHP(currentHP / MaxHP);
         if(currentHP <= 0)
         {
             Dead();
@@ -67,6 +74,7 @@ public class EnemyController : MonoBehaviour {
         anim.SetBool(AnimHash.Dead, true);
         StopCoroutine(stateMachine);
         controller.AddScore(Score);
+        timer.enabled = true;
     }
 
     public void Rotate()

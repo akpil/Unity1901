@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour {
     public float MaxHP;
     private float currentHP;
     private bool onGround;
+    private UIController uiCont;
 
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         currentHP = MaxHP;
+        uiCont = GameObject.FindGameObjectWithTag("UI")
+                .GetComponent<UIController>();
     }
 
     public void Dead()
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour {
     public void Hit(float damage)
     {
         currentHP -= damage;
+        uiCont.ShowPlayerHP(currentHP / MaxHP);
         if (currentHP <= 0)
         {
             anim.SetBool(AnimHash.Dead, true);

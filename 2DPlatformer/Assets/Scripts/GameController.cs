@@ -9,10 +9,17 @@ public class GameController : MonoBehaviour {
 
     private int Score;
 
+    private UIController uiCont;
+    private float playTime;
+    private bool isPlay;
 	// Use this for initialization
 	void Start () {
         subStageCount = 0;
         Score = 0;
+        uiCont = GameObject.FindGameObjectWithTag("UI")
+                .GetComponent<UIController>();
+        playTime = 0;
+        isPlay = true;
     }
 
     public void ChangeSubStage(int subStageID)
@@ -45,6 +52,10 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		if(isPlay)
+        {
+            playTime += Time.deltaTime;
+            uiCont.ShowTime(playTime);
+        }
 	}
 }
