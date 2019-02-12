@@ -5,9 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Object
   - Wall
   - Enemy
+  - Object
   - UI
   layers:
   - Default
@@ -44,14 +44,14 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
-    uniqueID: 4120305051
+    uniqueID: 571551105
     locked: 0
-  - name: Foor
-    uniqueID: 2099516227
+  - name: Floor
+    uniqueID: 1051054037
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: UI
-    uniqueID: 1133113083
+    uniqueID: 43713619
     locked: 0
