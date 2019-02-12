@@ -257,7 +257,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 56720108}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 274655400}
+        m_MethodName: LevelUP
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &56720108
@@ -376,7 +387,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 142648474}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 274655400}
+        m_MethodName: LevelUP
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &142648474
@@ -457,7 +479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75.20005}
+  m_AnchoredPosition: {x: 0, y: -75.19996}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &179014582
@@ -643,19 +665,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ef8709b1f2bd749b4dec5367b0335c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titles:
-  - "\uACF5\uACA9\uB825"
-  - "\uBC29\uC5B4\uB825"
-  - "\uCCB4\uB825"
-  - "\uD68C\uD53C"
-  - "\uCE58\uBA85\uD0C0"
-  test: wertewtwrt
+  datas:
+  - name: "\uACF5\uACA9\uB825"
+    contents: "\uC5C5\uADF8\uB808\uC774\uB4DC \uC2DC \uACF5\uACA9\uB825\uC774 {0}
+      \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    cost: 100
+    baseCost: 100
+    level: 1
+    value: 1
+  - name: "\uBC29\uC5B4\uB825"
+    contents: "\uC5C5\uADF8\uB808\uC774\uB4DC \uC2DC \uBC29\uC5B4\uB825\uC774 {0}
+      \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    cost: 200
+    baseCost: 200
+    level: 1
+    value: 2
+  - name: "\uCCB4\uB825"
+    contents: "\uCCB4\uB825\uC774 {0}\uB85C \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    cost: 150
+    baseCost: 150
+    level: 1
+    value: 1
+  - name: "\uD68C\uD53C"
+    contents: "\uD68C\uD53C \uC2A4\uD15F\uC774 {0}\uB85C \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    cost: 300
+    baseCost: 300
+    level: 1
+    value: 5
+  - name: "\uCE58\uBA85\uD0C0"
+    contents: "\uCE58\uBA85\uD0C0 \uC2A4\uD15F\uC774 {0}\uB85C \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    cost: 400
+    baseCost: 400
+    level: 1
+    value: 2
   elements:
   - {fileID: 1618759672}
   - {fileID: 2064885769}
   - {fileID: 1693913099}
   - {fileID: 643117398}
   - {fileID: 1182061487}
+  icons:
+  - {fileID: 21300000, guid: d965b2a8d02968c4da3b777ff0afce83, type: 3}
+  - {fileID: 21300002, guid: d965b2a8d02968c4da3b777ff0afce83, type: 3}
+  - {fileID: 21300004, guid: d965b2a8d02968c4da3b777ff0afce83, type: 3}
+  - {fileID: 21300006, guid: d965b2a8d02968c4da3b777ff0afce83, type: 3}
+  - {fileID: 21300008, guid: d965b2a8d02968c4da3b777ff0afce83, type: 3}
 --- !u!4 &274655401
 Transform:
   m_ObjectHideFlags: 0
@@ -749,7 +803,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 527323471}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 274655400}
+        m_MethodName: LevelUP
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &527323471
@@ -2639,7 +2704,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1532718855}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 274655400}
+        m_MethodName: LevelUP
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1532718855
@@ -3800,7 +3876,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2144387853}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 274655400}
+        m_MethodName: LevelUP
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2144387853
