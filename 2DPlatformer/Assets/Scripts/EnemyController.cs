@@ -73,12 +73,15 @@ public class EnemyController : MonoBehaviour {
 
     public void Dead()
     {
-        rb2d.velocity = Vector2.zero;
-        anim.SetBool(AnimHash.Dead, true);
-        StopCoroutine(stateMachine);
-        controller.AddScore(Score);
-        timer.enabled = true;
-        spawner.ReduceCount();
+        if(!anim.GetBool(AnimHash.Dead))
+        {
+            rb2d.velocity = Vector2.zero;
+            anim.SetBool(AnimHash.Dead, true);
+            StopCoroutine(stateMachine);
+            controller.AddScore(Score);
+            timer.enabled = true;
+            spawner.ReduceCount();
+        }
     }
 
     public void Rotate()

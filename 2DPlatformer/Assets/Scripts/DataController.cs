@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DataController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         Debug.Log(string.Format("{0}번째에 들어있는 자리에 {1}식의 데이터를 넣습니다.{0}",
                                 "첫", 260.ToString()));
 
@@ -17,6 +19,10 @@ public class DataController : MonoBehaviour
         {
             elements[i].SetAll(icons[i], datas[i].name, datas[i].contents, datas[i].cost, datas[i].value);
         }
+    }
+    public void StartmainGame()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void LevelUP(int id)
