@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour {
     private Coroutine stateMachine;
 
     public int Score;
+    private ZombieSpawner spawner;
     private GameController controller;
     private UIController uiCont;
     private Timer timer;
@@ -29,6 +30,8 @@ public class EnemyController : MonoBehaviour {
                                         GetComponent<GameController>();
         uiCont = GameObject.FindGameObjectWithTag("UI")
                 .GetComponent<UIController>();
+        spawner = GameObject.FindGameObjectWithTag("Spawner")
+                .GetComponent<ZombieSpawner>();
     }
 
     public void Move()
@@ -75,6 +78,7 @@ public class EnemyController : MonoBehaviour {
         StopCoroutine(stateMachine);
         controller.AddScore(Score);
         timer.enabled = true;
+        spawner.ReduceCount();
     }
 
     public void Rotate()
