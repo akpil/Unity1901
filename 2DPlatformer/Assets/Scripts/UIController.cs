@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour {
     public Text timeText;
     public HPBar HPbarPrefab;
+    public HPBar BossHPbarPrefab;
     public Image PlayerHPBar;
 
     public GameObject ResultWindow;
@@ -22,9 +23,16 @@ public class UIController : MonoBehaviour {
         PlayerHPBar.fillAmount = hp;
     }
 
-    public HPBar GetHPBar()
+    public HPBar GetHPBar(bool isBoss)
     {
-        return Instantiate(HPbarPrefab, transform);
+        if (isBoss)
+        {
+            return Instantiate(BossHPbarPrefab, transform);
+        }
+        else
+        {
+            return Instantiate(HPbarPrefab, transform);
+        }
     }
 
     public void ShowTime(float time)

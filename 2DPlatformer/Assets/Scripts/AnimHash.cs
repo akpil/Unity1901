@@ -10,4 +10,5 @@ public class AnimHash : MonoBehaviour {
     public static int VertSpeed = Animator.StringToHash("VertSpeed");
     public static int Move = Animator.StringToHash("IsMove");
     public static int View = Animator.StringToHash("ViewNumber");
+    public static int IsPotal = Animator.StringToHash("IsPotalIn");
 }

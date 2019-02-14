@@ -71,6 +71,18 @@ public class GameController : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void SetPotalIn()
+    {
+        bool isPotal = cameraAnim.GetBool(AnimHash.IsPotal);
+        cameraAnim.SetBool(AnimHash.IsPotal, !isPotal);
+    }
+
+    public void ReduceTime()
+    {
+        playTime -= 100;
+        uiCont.ShowTime(playTime);
+    }
+
     // Update is called once per frame
     void Update () {
 		if(isPlay)

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
+    public bool isBoss;
+
     public float Speed;
     private Rigidbody2D rb2d;
     private Animator anim;
@@ -43,7 +45,7 @@ public class EnemyController : MonoBehaviour {
     public void Hit(float damage)
     {
         currentHP -= damage;
-        HPBar hp = uiCont.GetHPBar();
+        HPBar hp = uiCont.GetHPBar(isBoss);
         hp.transform.position = HPBarPos.position;
         hp.ShowHP(currentHP / MaxHP);
         if(currentHP <= 0)
