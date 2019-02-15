@@ -83,6 +83,7 @@ public class EnemyController : MonoBehaviour {
             controller.AddScore(Score);
             timer.enabled = true;
             spawner.ReduceCount();
+            uiCont.ShowMessageBox("소리가 나기 시작했다.");
         }
     }
 

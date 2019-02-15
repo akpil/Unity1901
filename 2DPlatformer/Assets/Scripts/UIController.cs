@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour {
     public Text timeText;
     public HPBar HPbarPrefab;
     public HPBar BossHPbarPrefab;
+    public MessageBox MessageBoxPrefab;
     public Image PlayerHPBar;
 
     public GameObject ResultWindow;
@@ -21,6 +22,12 @@ public class UIController : MonoBehaviour {
     public void ShowPlayerHP(float hp)
     {
         PlayerHPBar.fillAmount = hp;
+    }
+
+    public void ShowMessageBox(string data)
+    {
+        MessageBox box =  Instantiate(MessageBoxPrefab, transform);
+        box.SetText(data);
     }
 
     public HPBar GetHPBar(bool isBoss)
